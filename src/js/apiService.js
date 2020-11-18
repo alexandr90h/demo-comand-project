@@ -3,8 +3,7 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 
 function fetchTopWeekMovie() {
   return fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`)
-    .then(r => r.json())
-    .then(console.log);
+    .then(r => r.json());
 }
 
 function fetchMovieByKeyWord(keyWord) {

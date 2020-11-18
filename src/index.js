@@ -12,7 +12,11 @@ const refs = {
   listBoxElem:document.querySelector('.list-film-conteiner'),
 };
 
-refs.inputSeachElem.addEventListener('input', debounce(onSeach,500));
+refs.inputSeachElem.addEventListener('input', debounce(onSeach, 500));
+fetchTopWeekMovie().then(obj => {
+  console.log(obj);
+  refs.listBoxElem.insertAdjacentHTML('beforeend', filmListTempl(obj.results));
+});
 function onSeach() {
   refs.listBoxElem.innerHTML = '';
   const keyWord = refs.inputSeachElem.value;
@@ -20,6 +24,7 @@ function onSeach() {
     refs.listBoxElem.insertAdjacentHTML('beforeend', filmListTempl(obj.results));
     console.log(obj);
   });
-fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=3f80d4cf4eb52d6e9d2ef400ea3d2acb&language=en-US').then(r=>r.json()).then(obj=>console.log(obj))
+  const genres = fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=3f80d4cf4eb52d6e9d2ef400ea3d2acb&language=en-US').then(r => r.json()).then(({obj}) => { return obj });
+  console.log(genres);
 }
 // console.log(fetchMovieByKeyWord('dad'));
