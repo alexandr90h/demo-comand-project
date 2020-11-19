@@ -14,17 +14,28 @@ const refs = {
 
 refs.inputSeachElem.addEventListener('input', debounce(onSeach, 500));
 fetchTopWeekMovie().then(obj => {
-  console.log(obj);
+  // console.log(obj);
   refs.listBoxElem.insertAdjacentHTML('beforeend', filmListTempl(obj.results));
 });
 function onSeach() {
   refs.listBoxElem.innerHTML = '';
   const keyWord = refs.inputSeachElem.value;
   fetchMovieByKeyWord(keyWord).then(obj => {
+  // fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=3f80d4cf4eb52d6e9d2ef400ea3d2acb&language=en-US')
+  //   .then(r => r.json()).then(genre => {
+
+  //   });
+    console.log(obj);
+    obj.results.forEach(element => {
+      console.log(element.genre_ids);
+      element.genre_ids.forEach(elem => {
+        console.log(elem);
+        if (elem === 27) {
+          elem = 'jhtfjhyvjcjhthrxhgxhgdzx';
+      }
+    })    
+    });
     refs.listBoxElem.insertAdjacentHTML('beforeend', filmListTempl(obj.results));
     console.log(obj);
   });
-  const genres = fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=3f80d4cf4eb52d6e9d2ef400ea3d2acb&language=en-US').then(r => r.json()).then(({obj}) => { return obj });
-  console.log(genres);
 }
-// console.log(fetchMovieByKeyWord('dad'));
