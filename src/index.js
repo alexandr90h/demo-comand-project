@@ -28,12 +28,7 @@ function onSeach() {
     console.log(obj);
     obj.results.forEach(element => {
       console.log(element.genre_ids);
-      element.genre_ids.forEach(elem => {
-        console.log(elem);
-        if (elem === 27) {
-          elem = 'jhtfjhyvjcjhthrxhgxhgdzx';
-      }
-    })    
+      element.genre_ids.push(111)
     });
     refs.listBoxElem.insertAdjacentHTML('beforeend', filmListTempl(obj.results));
     console.log(obj);
